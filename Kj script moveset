@@ -1325,6 +1325,7 @@ end
 
 humanoid.AnimationPlayed:Connect(onAnimationPlayed)
 
+
 local animationIdsToStop = {
 
     [10469493270] = true,
