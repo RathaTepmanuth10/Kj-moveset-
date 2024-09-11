@@ -1291,174 +1291,7 @@ local function onAnimationPlayed(animationTrack)
 
     if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
 
-local p = game.Players.LocalPlayer
 
-local Humanoid = p.Character:WaitForChild("Humanoid")
-
-
-for _, animlocal Punch1 = "17325510002"
-local Punch2 = "17325513870"
-local Punch3 = "17325522388"
-local Punch4 = "17325537719"
-
-
-
-
-
-
--- Do Not Edit This Code
-local player = game.Players.LocalPlayer
-repeat wait() until player.Character.Humanoid 
-local humanoid = player.Character.Humanoid 
-local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait() 
-local UserInputService = game:GetService("UserInputService")
-
-local animationIds = {
-    "10469493270"
-}
-
-local function stopAnimations()
-    for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
-        if table.find(animationIds, track.Animation.AnimationId:match("%d+$")) then
-            track:Stop()
-        end
-    end
-end
-
-local function playNewAnimation1() --you can add code after the anim to make it so that it runs more than just a custom anim
-    local animation = Instance.new("Animation")
-    animation.AnimationId = "rbxassetid://" .. Punch1
-
-    local animationTrack = humanoid:LoadAnimation(animation)
-    animationTrack:Play()
-    animationTrack:AdjustSpeed(1)
-end
-
-local function onAnimationTrackStarted(track)
-    if table.find(animationIds, track.Animation.AnimationId:match("%d+$")) then
-        stopAnimations()
-        playNewAnimation1()
-    end
-end
-
-humanoid.AnimationPlayed:Connect(onAnimationTrackStarted)
-
-
-
-local player = game.Players.LocalPlayer
-repeat wait() until player.Character.Humanoid 
-local humanoid = player.Character.Humanoid 
-local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait() 
-local UserInputService = game:GetService("UserInputService")
-
-local animationIds = {
-    "10469630950"
-}
-
-local function stopAnimations()
-    for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
-        if table.find(animationIds, track.Animation.AnimationId:match("%d+$")) then
-            track:Stop()
-        end
-    end
-end
-
-local function playNewAnimation2() --you can add code after the anim to make it so that it runs more than just a custom anim
-    local animation = Instance.new("Animation")
-    animation.AnimationId = "rbxassetid://" .. Punch2
-
-    local animationTrack = humanoid:LoadAnimation(animation)
-    animationTrack:Play()
-    animationTrack:AdjustSpeed(1)
-end
-
-local function onAnimationTrackStarted(track)
-    if table.find(animationIds, track.Animation.AnimationId:match("%d+$")) then
-        stopAnimations()
-        playNewAnimation2()
-    end
-end
-
-humanoid.AnimationPlayed:Connect(onAnimationTrackStarted)
-
-
-
-
-local player = game.Players.LocalPlayer
-repeat wait() until player.Character.Humanoid 
-local humanoid = player.Character.Humanoid 
-local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait() 
-local UserInputService = game:GetService("UserInputService")
-
-
-local animationIds = {
-    "10469639222"
-}
-
-local function stopAnimations()
-    for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
-        if table.find(animationIds, track.Animation.AnimationId:match("%d+$")) then
-            track:Stop()
-        end
-    end
-end
-
-local function playNewAnimation3() --you can add code after the anim to make it so that it runs more than just a custom anim
-    local animation = Instance.new("Animation")
-    animation.AnimationId = "rbxassetid://" .. Punch3
-
-    local animationTrack = humanoid:LoadAnimation(animation)
-    animationTrack:Play()
-    animationTrack:AdjustSpeed(1)
-end
-
-local function onAnimationTrackStarted(track)
-    if table.find(animationIds, track.Animation.AnimationId:match("%d+$")) then
-        stopAnimations()
-        playNewAnimation3()
-    end
-end
-
-humanoid.AnimationPlayed:Connect(onAnimationTrackStarted)
-
-
-
-
-local player = game.Players.LocalPlayer
-repeat wait() until player.Character.Humanoid 
-local humanoid = player.Character.Humanoid 
-local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait() 
-local UserInputService = game:GetService("UserInputService")
-
-local animationIds = {
-    "10469643643"
-}
-
-local function stopAnimations()
-    for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
-        if table.find(animationIds, track.Animation.AnimationId:match("%d+$")) then
-            track:Stop()
-        end
-    end
-end
-
-local function playNewAnimation4() --you can add code after the anim to make it so that it runs more than just a custom anim
-    local animation = Instance.new("Animation")
-    animation.AnimationId = "rbxassetid://" .. Punch4
-
-    local animationTrack = humanoid:LoadAnimation(animation)
-    animationTrack:Play()
-    animationTrack:AdjustSpeed(1)
-end
-
-local function onAnimationTrackStarted(track)
-    if table.find(animationIds, track.Animation.AnimationId:match("%d+$")) then
-        stopAnimations()
-        playNewAnimation4()
-    end
-end
-
-humanoid.AnimationPlayed:Connect(onAnimationTrackStarted)Track in pairs(Humanoid:GetPlayingAnimationTracks()) do
 
     animTrack:Stop()
 
@@ -1492,9 +1325,128 @@ end
 
 humanoid.AnimationPlayed:Connect(onAnimationPlayed)
 
+local animationIdsToStop = {
+
+    [10469493270] = true,
+
+    [10469630950] = true,
+
+    [10469639222] = true,
+
+    [10469643643] = true,
+
+}
 
 
+local replacementAnimations = {
 
+    ["10469643643"] = "rbxassetid://17889290569",
+
+    ["10469639222"] = "rbxassetid://17889471098",
+
+    ["10469630950"] = "rbxassetid://17889461810",
+
+    ["10469493270"] = "rbxassetid://17889458563",
+
+}
+
+
+local queue = {}
+
+local isAnimating = false
+
+
+local function playReplacementAnimation(animationId)
+
+    if isAnimating then
+
+        table.insert(queue, animationId)
+
+        return
+
+    end
+
+   
+
+    isAnimating = true
+
+    local replacementAnimationId = replacementAnimations[tostring(animationId)]
+
+    if replacementAnimationId then
+
+        local AnimAnim = Instance.new("Animation")
+
+        AnimAnim.AnimationId = replacementAnimationId
+
+        local Anim = humanoid:LoadAnimation(AnimAnim)
+
+        Anim:Play()
+
+       
+
+        Anim.Stopped:Connect(function()
+
+            isAnimating = false
+
+            if #queue > 0 then
+
+                local nextAnimationId = table.remove(queue, 1)
+
+                playReplacementAnimation(nextAnimationId)
+
+            end
+
+        end)
+
+    else
+
+        isAnimating = false
+
+    end
+
+end
+
+
+local function stopSpecificAnimations()
+
+    for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
+
+        local animationId = tonumber(track.Animation.AnimationId:match("%d+"))
+
+        if animationIdsToStop[animationId] then
+
+            track:Stop()
+
+        end
+
+    end
+
+end
+
+
+local function onAnimationPlayed(animationTrack)
+
+    local animationId = tonumber(animationTrack.Animation.AnimationId:match("%d+"))
+
+    if animationIdsToStop[animationId] then
+
+        stopSpecificAnimations()
+
+        animationTrack:Stop()
+
+       
+
+        local replacementAnimationId = replacementAnimations[tostring(animationId)]
+
+        if replacementAnimationId then
+
+            playReplacementAnimation(animationId)
+
+        end
+
+    end
+
+end
 
 local function onAnimationPlayed(animationTrack)
 
