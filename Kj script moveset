@@ -1570,9 +1570,8 @@ local function createMangaText(parent, text)
     return billboardGui
 end
 
-local leftText = createMangaText(cinematicGui, "*YOU
-BROKEN MY PHONE*")
-local rightText = createMangaText(cinematicGui, "YOU NEED TO DIE!!")
+local leftText = createMangaText(cinematicGui, "My phone broke")
+local rightText = createMangaText(cinematicGui, "you need to die")
 
 leftText.Enabled = false
 rightText.Enabled = false
